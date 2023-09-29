@@ -14,9 +14,9 @@ class SHADOWVR_API ABaseAIController : public AAIController
 {
 	GENERATED_BODY()
 
-protected:
 	UPROPERTY(EditAnywhere)
 	UBehaviorTree* BehaviorTree;
 
+protected:
 	virtual void BeginPlay() override;
 };

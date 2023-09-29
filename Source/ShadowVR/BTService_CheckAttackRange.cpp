@@ -1,8 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "BTService_CheckAttackRange.h"
-#include "BehaviorTree/BehaviorTree.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
@@ -24,7 +20,7 @@ void UBTService_CheckAttackRange::TickNode(UBehaviorTreeComponent& OwnerComp, ui
                 {
                     float DistanceTo = FVector::Distance(TargetActor->GetActorLocation(), AIPawn->GetActorLocation());
                     //1000是我们自己设置的攻击范围，可以随意修改
-                    bool bWithinRange = DistanceTo < 100.f;
+                    bool bWithinRange = DistanceTo < 500.f;
                     BlackBoardComp->SetValueAsBool(AttackRangeKey.SelectedKeyName, bWithinRange);
                 }
             }

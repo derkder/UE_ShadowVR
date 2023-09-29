@@ -22,6 +22,9 @@ class AShadowVRProjectile : public AActor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	UProjectileMovementComponent* ProjectileMovement;
 
+	UPROPERTY(VisibleDefaultsOnly, Category = Projectile)
+	float DamageAmount;
+
 public:
 	AShadowVRProjectile();
 

@@ -7,7 +7,6 @@
 // Sets default values
 ABaseEnemy::ABaseEnemy()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	AIControllerClass = ABaseAIController::StaticClass();
 }
@@ -31,3 +30,12 @@ void ABaseEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 }
 
+float ABaseEnemy::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
+{
+	// 处理伤害逻辑，例如减少血量
+	Enemy_HP -= DamageAmount;
+
+	// 在这里添加其他处理伤害的逻辑，例如死亡检查、播放受伤动画等
+	UE_LOG(LogTemp, Warning, TEXT("Godzilla ABaseEnemy::TakeDamage"));
+	return DamageAmount;
+}

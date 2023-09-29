@@ -1,5 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
-
+#include "BaseEnemy.h"
+#include "Engine/DamageEvents.h"
+#include "Engine/EngineTypes.h"
 #include "ShadowVRProjectile.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
@@ -29,15 +31,24 @@ AShadowVRProjectile::AShadowVRProjectile()
 
 	// Die after 3 seconds by default
 	InitialLifeSpan = 3.0f;
+
+	DamageAmount = 20.0f;
 }
 
 void AShadowVRProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	// Only add impulse and destroy projectile if we hit a physics
-	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
+	if ((OtherActor != nullptr) && (OtherActor != this)) 
+	{
+		if (Cast<ABaseEnemy>(OtherActor))
+		{
+			FPointDamageEvent DamageEvent(DamageAmount, Hit, NormalImpulse, nullptr);
+			Cast<ABaseEnemy>(OtherActor)->TakeDamage(20, DamageEvent, nullptr, nullptr);
+		}
+	}
+	else if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
 	{
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
-
 		Destroy();
 	}
 }

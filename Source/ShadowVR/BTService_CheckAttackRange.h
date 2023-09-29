@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AIController.h"
 #include "BehaviorTree/BTService.h"
+#include "BehaviorTree/BehaviorTree.h"
 #include "BTService_CheckAttackRange.generated.h"
 
 /**
