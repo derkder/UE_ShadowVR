@@ -12,7 +12,7 @@ class SHADOWVR_API ABaseEnemy : public APawn
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnyWhere)
-	float Enemy_HP = 100;
+	float Enemy_HP;
 
 protected:
 	// Called when the game starts or when spawned

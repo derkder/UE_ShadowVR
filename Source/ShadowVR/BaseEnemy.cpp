@@ -9,6 +9,7 @@ ABaseEnemy::ABaseEnemy()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	AIControllerClass = ABaseAIController::StaticClass();
+	Enemy_HP = 40;
 }
 
 // Called when the game starts or when spawned
@@ -34,7 +35,10 @@ float ABaseEnemy::TakeDamage(float DamageAmount, struct FDamageEvent const& Dama
 {
 	// 处理伤害逻辑，例如减少血量
 	Enemy_HP -= DamageAmount;
-
+	if (0 == Enemy_HP)
+	{
+		Destroy();
+	}
 	// 在这里添加其他处理伤害的逻辑，例如死亡检查、播放受伤动画等
 	UE_LOG(LogTemp, Warning, TEXT("Godzilla ABaseEnemy::TakeDamage"));
 	return DamageAmount;
