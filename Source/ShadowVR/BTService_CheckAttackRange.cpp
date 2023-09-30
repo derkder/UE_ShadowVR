@@ -19,9 +19,8 @@ void UBTService_CheckAttackRange::TickNode(UBehaviorTreeComponent& OwnerComp, ui
                 if (ensure(AIPawn))
                 {
                     float DistanceTo = FVector::Distance(TargetActor->GetActorLocation(), AIPawn->GetActorLocation());
-                    //1000是我们自己设置的攻击范围，可以随意修改
-                    bool bWithinRange = DistanceTo < 500.f;
-                    BlackBoardComp->SetValueAsBool(AttackRangeKey.SelectedKeyName, bWithinRange);
+                    BlackBoardComp->SetValueAsBool(FollowRangeKey.SelectedKeyName, DistanceTo > 100.f && DistanceTo < 600.f);
+                    BlackBoardComp->SetValueAsBool(AttackRangeKey.SelectedKeyName, DistanceTo < 100.f);
                 }
             }
         }

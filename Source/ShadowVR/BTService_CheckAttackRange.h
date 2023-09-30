@@ -17,6 +17,9 @@ class SHADOWVR_API UBTService_CheckAttackRange : public UBTService
 protected:
 	//可以动态的修改绑定的黑板键
 	UPROPERTY(EditAnywhere, Category = "AI")
+	FBlackboardKeySelector FollowRangeKey;
+
+	UPROPERTY(EditAnywhere, Category = "AI")
 	FBlackboardKeySelector AttackRangeKey;
 
 	virtual void TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
