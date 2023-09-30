@@ -1,5 +1,5 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
-#include "BaseEnemy.h"
+#include "BaseEnemyCharacter.h"
 #include "Engine/DamageEvents.h"
 #include "Engine/EngineTypes.h"
 #include "ShadowVRProjectile.h"
@@ -40,10 +40,10 @@ void AShadowVRProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 	// Only add impulse and destroy projectile if we hit a physics
 	if ((OtherActor != nullptr) && (OtherActor != this)) 
 	{
-		if (Cast<ABaseEnemy>(OtherActor))
+		if (Cast<ABaseEnemyCharacter>(OtherActor))
 		{
 			FPointDamageEvent DamageEvent(DamageAmount, Hit, NormalImpulse, nullptr);
-			Cast<ABaseEnemy>(OtherActor)->TakeDamage(20, DamageEvent, nullptr, nullptr);
+			Cast<ABaseEnemyCharacter>(OtherActor)->TakeDamage(20, DamageEvent, nullptr, nullptr);
 		}
 	}
 	else if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
