@@ -64,6 +64,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Weapon)
 	bool GetHasRifle();
 
+
+	UPROPERTY(EditAnywhere, Category = Custom)
+	float Hp = 60.0f;
+
 protected:
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
@@ -82,6 +86,7 @@ public:
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
 };
 

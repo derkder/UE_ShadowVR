@@ -14,6 +14,12 @@ class SHADOWVR_API ABaseEnemyCharacter : public ACharacter
 	UPROPERTY(EditAnyWhere)
 	float Enemy_HP;
 
+	UPROPERTY(EditAnyWhere)
+	float Attack_Range = 100;
+
+	UPROPERTY(EditAnyWhere)
+	float Attack_Num = 15;;
+
 public:
 	// Sets default values for this character's properties
 	ABaseEnemyCharacter();
@@ -31,4 +37,13 @@ public:
 
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
+	float GetAttackNum() 
+	{
+		return Attack_Num;
+	}
+
+	float GetAttackRange()
+	{
+		return Attack_Range;
+	}
 };

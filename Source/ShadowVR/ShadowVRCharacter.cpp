@@ -108,3 +108,15 @@ bool AShadowVRCharacter::GetHasRifle()
 {
 	return bHasRifle;
 }
+
+float AShadowVRCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Player Take Damage %f"), DamageAmount);
+
+	Hp -= DamageAmount;
+	if (0 == Hp)
+	{
+		//Destroy();
+	}
+	return DamageAmount;
+}
